@@ -90,7 +90,7 @@ j.inArray = function(array,value) {
 j.diff = function(a,b,ignore) {
   var obj = {};
  
-  if(_.isEmpty(a)) {
+  if(j.isEmpty(a)) {
     return b;
   }
 

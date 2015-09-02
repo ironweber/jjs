@@ -77,6 +77,24 @@ j.inArray = function(array,value) {
   return array.indexOf(value) > -1;
 }
 
+/**
+ * Convert an object to an array.
+ *
+ * @function j.toArray
+ * @param {object} obj - object to convert
+ * @return {array}
+ */
+j.toArray = function (obj) {
+  var arr = [];
+  for(var k in obj) {
+    if(obj.hasOwnProperty(k)) {
+      arr.push(obj[k]);
+    }
+  }
+
+  return arr;
+}
+
 
 /**
  * Diff two objects and return a new object with the differences.

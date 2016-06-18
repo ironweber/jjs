@@ -1,7 +1,7 @@
 /** @namespace */
 j = {};
 
-j.version = '0.1.0';
+j.version = '0.2.0';
 
 /**
  * return the type of a variable
@@ -58,7 +58,7 @@ j.size = function(obj) {
     }
   }
 
-  return size; 
+  return size;
 }
 
 /**
@@ -107,7 +107,7 @@ j.toArray = function (obj) {
  */
 j.diff = function(a,b,ignore) {
   var obj = {};
- 
+
   if(j.isEmpty(a)) {
     return b;
   }
@@ -150,7 +150,7 @@ j.diff = function(a,b,ignore) {
       }
     }
   }
-  
+
   // if object b >= a iterate over b to make sure we didn't miss any data.
   if(j.size(b) >= j.size(a)) {
     for(var k in b) {
@@ -161,4 +161,28 @@ j.diff = function(a,b,ignore) {
   }
 
   return obj;
+}
+
+
+/**
+ * Flatten an array
+ *
+ * @function j.flatten
+ * @param {array} array
+ * @param {boolean} mutable - if true the array passed will be mutated.
+ * @return {array}
+ */
+j.flatten = function flatten(array, mutable) {
+  var nodes = (mutable && array) || array.slice(); // return a new array.
+  var flattened = [];
+
+  for (var node = nodes.shift(); node !== undefined; node = nodes.shift()) {
+    if (Array.isArray(node)) {
+      nodes.unshift.apply(nodes, node);
+    } else {
+      flattened.push(node);
+    }
+  }
+
+  return flattened;
 }
